@@ -1,11 +1,8 @@
-message=Hello from Demo Web App - config server
-userapiurl=https://localhost:7001/api/values
-accountapiurl=https://localhost:7002/api/values
-GlobalConfiguration={ //GlobalConfiguration allows you to define the BaseUrl that Ocelot is going to listen to
-    "BaseUrl": "http://localhost:7000"
-  }
-
-ReRoutes= [
+{
+  //ReRoutes array allows you to define one or more redirects.
+  //The downstream paths represent the paths to the microservices.
+  //The upstream paths represent how the users will access these microservices via the API Gateway.
+  "ReRoutes": [
     {
       "DownstreamPathTemplate": "/api/values",
       "DownstreamScheme": "http",
@@ -29,6 +26,10 @@ ReRoutes= [
       ],
       "UpstreamPathTemplate": "/user/{catchAll}",
       "UpstreamHttpMethod": []
-    }]
-
+    }
+  ],
+  "GlobalConfiguration": { //GlobalConfiguration allows you to define the BaseUrl that Ocelot is going to listen to
+    "BaseUrl": "http://localhost:7000"
+  }
+}
 
